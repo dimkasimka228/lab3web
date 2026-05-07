@@ -1,0 +1,22 @@
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .container {
+    width: min(100% - 20px, 1100px);
+  }
+
+  table, video, audio {
+    max-width: 100%;
+  }
+
+  form {
+    padding: 15px;
+  }
+}

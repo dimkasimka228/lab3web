@@ -1,0 +1,158 @@
+:root {
+  --color-primary: #1d4e89;
+  --color-accent: #ffb703;
+  --color-bg: #f7f9fc;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-border: #d9e2ec;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header & Navigation */
+header {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 15px;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: var(--color-accent);
+}
+
+nav a.active {
+  border-bottom: 2px solid var(--color-accent);
+}
+
+/* Footer */
+footer {
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* Headings & Paragraphs */
+h1 {
+  font-size: 36px;
+  color: var(--color-primary);
+}
+
+h2 {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+p {
+  margin-bottom: 12px;
+}
+
+/* Lists */
+ul, ol {
+  margin-left: 20px;
+  padding-left: 10px;
+}
+
+/* Images */
+figure img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+figcaption {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table caption {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+thead {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+td, th {
+  border: 1px solid var(--color-border);
+  padding: 10px;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--color-surface);
+}
+
+/* Contact Form */
+form {
+  background: var(--color-surface);
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(29, 78, 137, 0.15);
+}
+
+button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.92;
+}
