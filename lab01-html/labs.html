@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Лабораторні роботи з веб-програмування: HTML, CSS, JavaScript, React">
+    <title>Лабораторні роботи | WebLab</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    
+    <script src="js/theme.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon">&lt;/&gt;</span>
+                    <span class="logo-text">Web<span class="logo-accent">Lab</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Головна</a></li>
+                    <li><a href="labs.html" class="nav-link active">Лабораторні</a></li>
+                    <li><a href="catalog.html" class="nav-link">Каталог</a></li>
+                    <li><a href="pages/about.html" class="nav-link">Про курс</a></li>
+                    <li><a href="pages/contact.html" class="nav-link">Контакти</a></li>
+                    <li><a href="admin.html" class="nav-link">Admin</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Перемикач теми">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="burger-menu" id="burgerMenu" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-container">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html" class="mobile-nav-link">Головна</a></li>
+                    <li><a href="labs.html" class="mobile-nav-link active">Лабораторні</a></li>
+                    <li><a href="catalog.html" class="mobile-nav-link">Каталог</a></li>
+                    <li><a href="pages/about.html" class="mobile-nav-link">Про курс</a></li>
+                    <li><a href="pages/contact.html" class="mobile-nav-link">Контакти</a></li>
+                    <li><a href="admin.html" class="mobile-nav-link">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Лабораторні <span class="highlight">роботи</span></h1>
+                <p>Практичні завдання для закріплення теоретичних знань</p>
+            </div>
+        </section>
+
+        <section class="labs-grid-section">
+            <div class="container">
+                <!-- Фільтри -->
+                <div class="labs-filters">
+                    <div class="filter-group">
+                        <label for="labSearch">🔍 Пошук:</label>
+                        <input type="text" id="labSearch" placeholder="Назва лабораторної..." class="search-input">
+                    </div>
+                    <div class="filter-group">
+                        <label for="labFilter">📁 Категорія:</label>
+                        <select id="labFilter" class="filter-select">
+                            <option value="all">Всі лабораторні</option>
+                            <option value="html">HTML/CSS</option>
+                            <option value="js">JavaScript</option>
+                            <option value="react">React</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Сітка лабораторних -->
+                <div class="labs-grid" id="labsGrid">
+                    <!-- Динамічне завантаження через JS -->
+                </div>
+                
+                <!-- Порожній стан -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <p>😢 Лабораторних робіт не знайдено</p>
+                    <button class="btn btn-primary" id="resetFilters">Скинути фільтри</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Відео секція -->
+        <section class="video-section">
+            <div class="container">
+                <h2 class="section-title">Відео-<span class="highlight">огляд</span></h2>
+                <div class="video-card">
+                    <video controls width="100%" style="border-radius: 1rem;">
+                        <source src="assets/media/monkeyFlex.mp4" type="video/mp4">
+                        <p>Ваш браузер не підтримує відео. <a href="assets/media/monkeyFlex.mp4">Завантажити</a></p>
+                    </video>
+                    <p class="video-caption" style="margin-top: 1rem; color: var(--text-muted);">Демонстрація створення сучасного веб-сайту</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo"><span class="logo-icon">&lt;/&gt;</span><span>WebLab</span></div>
+                    <p>Сучасний підхід до вивчення веб-технологій. Практика, проєкти, результат.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column"><h4>Навігація</h4><ul><li><a href="index.html">Головна</a></li><li><a href="labs.html">Лабораторні</a></li><li><a href="catalog.html">Каталог</a></li></ul></div>
+                    <div class="footer-column"><h4>Інформація</h4><ul><li><a href="pages/about.html">Про курс</a></li><li><a href="pages/contact.html">Контакти</a></li><li><a href="admin.html">Admin</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> WebLab. Всі права захищено.</p></div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Наверх">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script>
+        // Дані лабораторних робіт
+        const labsData = [
+            { id: 1, title: "HTML5 та семантична верстка", category: "html", description: "Створення структури документа, використання семантичних тегів, форм та медіа-елементів.", duration: "2 год", level: "Початковий", status: "✅ Виконано" },
+            { id: 2, title: "CSS3 та адаптивний дизайн", category: "html", description: "Flexbox, Grid, Media Queries, анімації та трансформації.", duration: "3 год", level: "Початковий", status: "✅ Виконано" },
+            { id: 3, title: "JavaScript: DOM та події", category: "js", description: "Робота з DOM-деревом, обробка подій, створення інтерактивних компонентів.", duration: "4 год", level: "Середній", status: "🔄 В процесі" },
+            { id: 4, title: "Асинхронний JavaScript", category: "js", description: "Promise, async/await, fetch API, робота з API сервера.", duration: "3 год", level: "Середній", status: "⏳ Очікує" },
+            { id: 5, title: "React: компоненти та стан", category: "react", description: "Створення React-компонентів, управління станом, хуки.", duration: "5 год", level: "Просунутий", status: "⏳ Очікує" },
+            { id: 6, title: "React Router та маршрутизація", category: "react", description: "Навігація в React-додатках, динамічні маршрути.", duration: "3 год", level: "Просунутий", status: "⏳ Очікує" }
+        ];
+
+        const grid = document.getElementById('labsGrid');
+        const searchInput = document.getElementById('labSearch');
+        const filterSelect = document.getElementById('labFilter');
+        const emptyState = document.getElementById('emptyState');
+        const resetBtn = document.getElementById('resetFilters');
+
+        function getCategoryClass(category) {
+            const classes = { html: 'badge-html', js: 'badge-js', react: 'badge-react' };
+            return classes[category] || 'badge-html';
+        }
+
+        function getCategoryLabel(category) {
+            const labels = { html: 'HTML/CSS', js: 'JavaScript', react: 'React' };
+            return labels[category] || category;
+        }
+
+        function renderLabs(labs) {
+            if (!labs.length) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            emptyState.style.display = 'none';
+            
+            grid.innerHTML = labs.map(lab => `
+                <div class="lab-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <span class="lab-badge ${getCategoryClass(lab.category)}">${getCategoryLabel(lab.category)}</span>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">${lab.status}</span>
+                    </div>
+                    <h3>${lab.title}</h3>
+                    <p style="margin: 0.5rem 0; color: var(--text-secondary);">${lab.description}</p>
+                    <div style="display: flex; justify-content: space-between; margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+                        <span>⏱ ${lab.duration}</span>
+                        <span>📊 ${lab.level}</span>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 1rem; width: 100%; padding: 0.5rem;" onclick="alert('Лабораторна робота №${lab.id}: ${lab.title}')">
+                        Детальніше
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function filterLabs() {
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            const category = filterSelect ? filterSelect.value : 'all';
+            
+            const filtered = labsData.filter(lab => {
+                const matchesSearch = lab.title.toLowerCase().includes(searchTerm) ||
+                                      lab.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = category === 'all' || lab.category === category;
+                return matchesSearch && matchesCategory;
+            });
+            
+            renderLabs(filtered);
+        }
+
+        function resetFilters() {
+            if (searchInput) searchInput.value = '';
+            if (filterSelect) filterSelect.value = 'all';
+            filterLabs();
+        }
+
+        // Ініціалізація
+        if (searchInput) searchInput.addEventListener('input', filterLabs);
+        if (filterSelect) filterSelect.addEventListener('change', filterLabs);
+        if (resetBtn) resetBtn.addEventListener('click', resetFilters);
+        
+        renderLabs(labsData);
+    </script>
+</body>
+</html>

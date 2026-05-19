@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | WebLab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <script src="js/theme.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <style>
+        .admin-card { background: var(--bg-card); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--border-color); }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.5rem; background: var(--bg-primary); color: var(--text-primary); }
+        .btn { padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; border: none; }
+        .btn-primary { background: #6366f1; color: white; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn-secondary { background: #64748b; color: white; }
+        .table-wrapper { overflow-x: auto; }
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th, .data-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .data-table th { background: var(--bg-secondary); }
+        .status-message { padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem; display: none; }
+        .status-success { background: #10b981; color: white; display: block; }
+        .status-error { background: #ef4444; color: white; display: block; }
+        .status-warning { background: #f59e0b; color: white; display: block; }
+        .flex-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo"><a href="index.html"><span class="logo-icon">&lt;/&gt;</span><span class="logo-text">Web<span class="logo-accent">Lab</span></span></a></div>
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Головна</a></li>
+                    <li><a href="labs.html" class="nav-link">Лабораторні</a></li>
+                    <li><a href="catalog.html" class="nav-link">Каталог</a></li>
+                    <li><a href="pages/about.html" class="nav-link">Про курс</a></li>
+                    <li><a href="pages/contact.html" class="nav-link">Контакти</a></li>
+                    <li><a href="admin.html" class="nav-link active">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="burger-menu" id="burgerMenu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-container">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html" class="mobile-nav-link">Головна</a></li>
+                    <li><a href="labs.html" class="mobile-nav-link">Лабораторні</a></li>
+                    <li><a href="catalog.html" class="mobile-nav-link">Каталог</a></li>
+                    <li><a href="pages/about.html" class="mobile-nav-link">Про курс</a></li>
+                    <li><a href="pages/contact.html" class="mobile-nav-link">Контакти</a></li>
+                    <li><a href="admin.html" class="mobile-nav-link active">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Панель <span class="highlight">адміністратора</span></h1>
+                <p>CRUD-операції з курсами (потрібен json-server)</p>
+            </div>
+        </section>
+
+        <section class="admin-section">
+            <div class="container">
+                <div id="statusMessage" class="status-message"></div>
+                
+                <div class="flex-row" style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+                    <!-- Форма додавання/редагування -->
+                    <div class="admin-card">
+                        <h3 id="formTitle">➕ Додати новий курс</h3>
+                        <form id="courseForm">
+                            <input type="hidden" id="editId" value="">
+                            
+                            <div class="form-group">
+                                <label for="title">Назва курсу *</label>
+                                <input type="text" id="title" required placeholder="Введіть назву курсу">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="category">Категорія *</label>
+                                <select id="category" required>
+                                    <option value="html">HTML/CSS</option>
+                                    <option value="css">CSS</option>
+                                    <option value="js">JavaScript</option>
+                                    <option value="react">React</option>
+                                    <option value="vue">Vue.js</option>
+                                    <option value="backend">Node.js/Backend</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Опис *</label>
+                                <textarea id="description" rows="3" required placeholder="Опис курсу"></textarea>
+                            </div>
+                            
+                            <div class="flex-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="price">Ціна ($) *</label>
+                                    <input type="number" id="price" required placeholder="299">
+                                </div>
+                                <div class="form-group">
+                                    <label for="duration">Тривалість</label>
+                                    <input type="text" id="duration" placeholder="20 год" value="20 год">
+                                </div>
+                            </div>
+                            
+                            <div class="flex-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="level">Рівень</label>
+                                    <select id="level">
+                                        <option value="Початковий">Початковий</option>
+                                        <option value="Середній">Середній</option>
+                                        <option value="Просунутий">Просунутий</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rating">Рейтинг (0-5)</label>
+                                    <input type="number" id="rating" step="0.1" min="0" max="5" value="4.5">
+                                </div>
+                            </div>
+                            
+                            <div class="flex-row" style="margin-top: 1rem; gap: 1rem;">
+                                <button type="submit" class="btn btn-primary" id="submitBtn">💾 Зберегти курс</button>
+                                <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none;">❌ Скасувати</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Таблиця з курсами -->
+                    <div class="admin-card">
+                        <h3>📋 Список курсів</h3>
+                        <div class="table-wrapper">
+                            <table class="data-table">
+                                <thead>
+                                    <tr><th>ID</th><th>Назва</th><th>Категорія</th><th>Ціна</th><th>Дії</th></tr>
+                                </thead>
+                                <tbody id="coursesTableBody">
+                                    <tr><td colspan="5" style="text-align: center;">⏳ Завантаження...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info"><div class="footer-logo"><span class="logo-icon">&lt;/&gt;</span><span>WebLab</span></div><p>Сучасний підхід до вивчення веб-технологій.</p></div>
+                <div class="footer-links">
+                    <div class="footer-column"><h4>Навігація</h4><ul><li><a href="index.html">Головна</a></li><li><a href="labs.html">Лабораторні</a></li><li><a href="catalog.html">Каталог</a></li></ul></div>
+                    <div class="footer-column"><h4>Інформація</h4><ul><li><a href="pages/about.html">Про курс</a></li><li><a href="pages/contact.html">Контакти</a></li><li><a href="admin.html">Admin</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> WebLab</p></div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+    <script>
+        // ============================================
+        // КОНФІГУРАЦІЯ
+        // ============================================
+        const API_BASE = 'http://localhost:3000';
+        const API_URL = `${API_BASE}/courses`;
+        
+        let courses = [];
+        let editMode = false;
+        let editId = null;
+        
+        // ============================================
+        // ДОПОМІЖНІ ФУНКЦІЇ
+        // ============================================
+        function showMessage(text, type = 'success') {
+            const msgDiv = document.getElementById('statusMessage');
+            msgDiv.textContent = text;
+            msgDiv.className = `status-message status-${type}`;
+            setTimeout(() => {
+                msgDiv.className = 'status-message';
+            }, 3000);
+        }
+        
+        function getCategoryLabel(category) {
+            const labels = { html: 'HTML/CSS', css: 'CSS', js: 'JavaScript', react: 'React', vue: 'Vue.js', backend: 'Node.js' };
+            return labels[category] || category;
+        }
+        
+        // ============================================
+        // ЗАВАНТАЖЕННЯ КУРСІВ
+        // ============================================
+        async function loadCourses() {
+            const tbody = document.getElementById('coursesTableBody');
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                courses = await response.json();
+                renderTable();
+            } catch (error) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center;">❌ Помилка: ${error.message}<br><small>Запустіть: json-server --watch db.json --port 3000</small></td></tr>`;
+            }
+        }
+        
+        // ============================================
+        // ВІДОБРАЖЕННЯ ТАБЛИЦІ
+        // ============================================
+        function renderTable() {
+            const tbody = document.getElementById('coursesTableBody');
+            if (!courses.length) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">📭 Немає курсів. Додайте перший!</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = courses.map(course => `
+                <tr>
+                    <td>${course.id}</td>
+                    <td><strong>${escapeHtml(course.title)}</strong></td>
+                    <td><span style="background: #e2e8f0; padding: 2px 8px; border-radius: 20px; font-size: 12px;">${getCategoryLabel(course.category)}</span></td>
+                    <td>$${course.price}</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="editCourse(${course.id})" style="padding: 4px 12px; margin-right: 5px;">✏️</button>
+                        <button class="btn btn-danger" onclick="deleteCourse(${course.id})" style="padding: 4px 12px;">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
+        }
+        
+        // ============================================
+        // СТВОРЕННЯ КУРСУ (POST)
+        // ============================================
+        async function createCourse(courseData) {
+            const response = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(courseData)
+            });
+            if (!response.ok) throw new Error('Помилка створення');
+            return response.json();
+        }
+        
+        // ============================================
+        // ОНОВЛЕННЯ КУРСУ (PUT)
+        // ============================================
+        async function updateCourse(id, courseData) {
+            const response = await fetch(`${API_URL}/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...courseData, id })
+            });
+            if (!response.ok) throw new Error('Помилка оновлення');
+            return response.json();
+        }
+        
+        // ============================================
+        // ВИДАЛЕННЯ КУРСУ (DELETE)
+        // ============================================
+        window.deleteCourse = async function(id) {
+            if (!confirm(`Ви впевнені, що хочете видалити курс #${id}?`)) return;
+            
+            try {
+                const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+                if (!response.ok) throw new Error('Помилка видалення');
+                
+                showMessage(`✅ Курс #${id} успішно видалено!`, 'success');
+                await loadCourses();
+                
+                // Якщо видалили курс, який редагували
+                if (editMode && editId === id) {
+                    resetForm();
+                }
+            } catch (error) {
+                showMessage(`❌ ${error.message}`, 'error');
+            }
+        };
+        
+        // ============================================
+        // РЕДАГУВАННЯ КУРСУ
+        // ============================================
+        window.editCourse = function(id) {
+            const course = courses.find(c => c.id === id);
+            if (!course) return;
+            
+            editMode = true;
+            editId = id;
+            
+            document.getElementById('formTitle').textContent = '✏️ Редагування курсу';
+            document.getElementById('editId').value = id;
+            document.getElementById('title').value = course.title;
+            document.getElementById('category').value = course.category;
+            document.getElementById('description').value = course.description;
+            document.getElementById('price').value = course.price;
+            document.getElementById('duration').value = course.duration || '20 год';
+            document.getElementById('level').value = course.level || 'Середній';
+            document.getElementById('rating').value = course.rating || 4.5;
+            document.getElementById('submitBtn').textContent = '💾 Оновити курс';
+            document.getElementById('cancelBtn').style.display = 'inline-block';
+        };
+        
+        // ============================================
+        // СКИДАННЯ ФОРМИ
+        // ============================================
+        function resetForm() {
+            editMode = false;
+            editId = null;
+            
+            document.getElementById('courseForm').reset();
+            document.getElementById('formTitle').textContent = '➕ Додати новий курс';
+            document.getElementById('editId').value = '';
+            document.getElementById('submitBtn').textContent = '💾 Зберегти курс';
+            document.getElementById('cancelBtn').style.display = 'none';
+            document.getElementById('duration').value = '20 год';
+            document.getElementById('rating').value = '4.5';
+            document.getElementById('level').value = 'Середній';
+        }
+        
+        // ============================================
+        // ОБРОБКА ВІДПРАВЛЕННЯ ФОРМИ
+        // ============================================
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const courseData = {
+                title: document.getElementById('title').value.trim(),
+                category: document.getElementById('category').value,
+                description: document.getElementById('description').value.trim(),
+                price: parseInt(document.getElementById('price').value),
+                duration: document.getElementById('duration').value || '20 год',
+                level: document.getElementById('level').value,
+                rating: parseFloat(document.getElementById('rating').value) || 4.5,
+                students: Math.floor(Math.random() * 500) + 100
+            };
+            
+            if (!courseData.title || !courseData.description || !courseData.price) {
+                showMessage('❌ Будь ласка, заповніть обов\'язкові поля', 'error');
+                return;
+            }
+            
+            try {
+                if (editMode && editId) {
+                    await updateCourse(editId, courseData);
+                    showMessage(`✅ Курс "${courseData.title}" оновлено!`, 'success');
+                } else {
+                    await createCourse(courseData);
+                    showMessage(`✅ Курс "${courseData.title}" додано!`, 'success');
+                }
+                
+                resetForm();
+                await loadCourses();
+                
+            } catch (error) {
+                showMessage(`❌ Помилка: ${error.message}`, 'error');
+            }
+        }
+        
+        // ============================================
+        // ПЕРЕВІРКА СЕРВЕРА
+        // ============================================
+        async function checkServer() {
+            try {
+                const response = await fetch(API_BASE);
+                if (response.ok) return true;
+            } catch (e) {
+                showMessage('⚠️ Сервер не запущено! Запустіть: json-server --watch db.json --port 3000', 'warning');
+                document.getElementById('coursesTableBody').innerHTML = '<tr><td colspan="5" style="text-align: center;">❌ Сервер не запущено</td></tr>';
+                return false;
+            }
+            return false;
+        }
+        
+        // ============================================
+        // ІНІЦІАЛІЗАЦІЯ
+        // ============================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            document.getElementById('courseForm').addEventListener('submit', handleSubmit);
+            document.getElementById('cancelBtn').addEventListener('click', resetForm);
+            
+            const isRunning = await checkServer();
+            if (isRunning) {
+                await loadCourses();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,39 +1,120 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-
-<link rel="stylesheet" href="../styles/style.css">
-<link rel="stylesheet" href="../styles/responsive.css">
-
-  <meta charset="UTF-8">
-  <title>Про мене</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Детальна інформація про курс веб-програмування">
+    <title>Про курс | WebLab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <script src="../js/theme.js" defer></script>
+    <script src="../js/main.js" defer></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="../index.html">Головна</a>
-      <a href="about.html">Про мене</a>
-      <a href="contact.html">Контакти</a>
-    </nav>
-  </header>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo"><a href="../index.html"><span class="logo-icon">&lt;/&gt;</span><span class="logo-text">Web<span class="logo-accent">Lab</span></span></a></div>
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Головна</a></li>
+                    <li><a href="../labs.html" class="nav-link">Лабораторні</a></li>
+                    <li><a href="../catalog.html" class="nav-link">Каталог</a></li>
+                    <li><a href="about.html" class="nav-link active">Про курс</a></li>
+                    <li><a href="contact.html" class="nav-link">Контакти</a></li>
+                    <li><a href="../admin.html" class="nav-link">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Перемикач теми">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="burger-menu" id="burgerMenu" aria-label="Меню"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-container">
+                <ul class="mobile-nav-list">
+                    <li><a href="../index.html" class="mobile-nav-link">Головна</a></li>
+                    <li><a href="../labs.html" class="mobile-nav-link">Лабораторні</a></li>
+                    <li><a href="../catalog.html" class="mobile-nav-link">Каталог</a></li>
+                    <li><a href="about.html" class="mobile-nav-link active">Про курс</a></li>
+                    <li><a href="contact.html" class="mobile-nav-link">Контакти</a></li>
+                    <li><a href="../admin.html" class="mobile-nav-link">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-  <main>
-    <h1>Про мене</h1>
-    <p>Тут можна розмістити короткий текст про себе.</p>
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Про <span class="highlight">курс</span></h1>
+                <p>Все, що потрібно знати про навчання</p>
+            </div>
+        </section>
 
-    <h2>Моє відео</h2>
-    <video controls width="480">
-      <source src="../assets/media/monkeyvideo.mp4" type="video/mp4">
-      <source src="../assets/media/demo.webm" type="video/webm">
-      <p>Ваш браузер не підтримує HTML-відео. <a href="../assets/media/monkeyvideo.mp4">Завантажити відео</a>.</p>
-    </video>
+        <section class="about-content">
+            <div class="container">
+                <div class="form-card">
+                    <h2>Чому варто обрати наш курс?</h2>
+                    <ul style="margin: 1rem 0 1.5rem 2rem;">
+                        <li>📖 <strong>10+ модулів</strong> - повне покриття сучасних технологій</li>
+                        <li>🎯 <strong>3 реальних проєкти</strong> для портфоліо</li>
+                        <li>👨‍🏫 <strong>Підтримка менторів</strong> 24/7</li>
+                        <li>🎓 <strong>Сертифікат</strong> після завершення</li>
+                        <li>💼 <strong>Допомога з працевлаштуванням</strong></li>
+                    </ul>
+                </div>
 
-    <h2>Мій аудіотрек</h2>
-    <audio controls>
-      <source src="../assets/media/demo.mp3" type="audio/mpeg">
-      <source src="../assets/media/demo.ogg" type="audio/ogg">
-      <p>Ваш браузер не підтримує аудіо. <a href="../assets/media/monkeyvideo.mp4">Завантажити аудіо</a>.</p>
-    </audio>
-  </main>
+                <!-- Відео-секція -->
+                <div class="video-section" style="margin-top: 2rem;">
+                    <h2 class="section-title">Відео-<span class="highlight">огляд</span></h2>
+                    <div class="video-card">
+                        <video controls width="100%">
+                            <source src="../assets/media/monkeyFlex.mp4" type="video/mp4">
+                            <p>Ваш браузер не підтримує HTML-відео. <a href="../assets/media/monkeyFlex.mp4">Завантажити відео</a></p>
+                        </video>
+                        <p class="video-caption" style="margin-top: 1rem; color: var(--text-muted);">Демонстрація створення адаптивного сайту</p>
+                    </div>
+                </div>
+
+                <!-- Аудіо-секція -->
+                <div class="audio-section" style="margin-top: 2rem;">
+                    <h2 class="section-title">Аудіо-<span class="highlight">супровід</span></h2>
+                    <div class="audio-card">
+                        <div class="audio-info">
+                            <div class="audio-icon">🎵</div>
+                            <div>
+                                <h3>Трек для натхнення</h3>
+                                <p>Музика для продуктивного навчання</p>
+                            </div>
+                        </div>
+                        <audio controls class="custom-audio">
+                            <source src="../assets/media/monkeyandanceNebo.mp3" type="audio/mpeg">
+                            <source src="../assets/media/monkeysadsds.mp3" type="audio/mpeg">
+                            <p>Ваш браузер не підтримує аудіоплеєр. <a href="../assets/media/monkeyandanceNebo.mp3">Завантажити аудіо</a></p>
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info"><div class="footer-logo"><span class="logo-icon">&lt;/&gt;</span><span>WebLab</span></div><p>Сучасний підхід до вивчення веб-технологій.</p></div>
+                <div class="footer-links">
+                    <div class="footer-column"><h4>Навігація</h4><ul><li><a href="../index.html">Головна</a></li><li><a href="../labs.html">Лабораторні</a></li><li><a href="../catalog.html">Каталог</a></li></ul></div>
+                    <div class="footer-column"><h4>Інформація</h4><ul><li><a href="about.html">Про курс</a></li><li><a href="contact.html">Контакти</a></li><li><a href="../admin.html">Admin</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> WebLab. Всі права захищено.</p></div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Наверх"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
 </body>
 </html>

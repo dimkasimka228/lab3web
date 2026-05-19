@@ -1,0 +1,48 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "HTML5 Майстерність",
+      "category": "html",
+      "description": "Повний курс з HTML5: семантика, доступність, форми, медіа.",
+      "price": 299,
+      "duration": "20 год",
+      "level": "Початковий",
+      "rating": 4.8,
+      "students": 1240
+    },
+    {
+      "id": 2,
+      "title": "CSS3 Професіонал",
+      "category": "css",
+      "description": "Flexbox, Grid, анімації, адаптивний дизайн.",
+      "price": 349,
+      "duration": "25 год",
+      "level": "Початковий",
+      "rating": 4.9,
+      "students": 980
+    },
+    {
+      "id": 3,
+      "title": "JavaScript Поглиблений",
+      "category": "js",
+      "description": "ES6+, асинхронність, DOM, події, AJAX, проміси.",
+      "price": 399,
+      "duration": "30 год",
+      "level": "Середній",
+      "rating": 4.7,
+      "students": 2150
+    },
+    {
+      "id": 4,
+      "title": "React Developer",
+      "category": "react",
+      "description": "Компоненти, хуки, стан, маршрутизація, Redux.",
+      "price": 499,
+      "duration": "35 год",
+      "level": "Просунутий",
+      "rating": 4.9,
+      "students": 1870
+    }
+  ]
+}

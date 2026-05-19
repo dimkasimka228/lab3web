@@ -1,59 +1,145 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    
-<link rel="stylesheet" href="../styles/style.css">
-<link rel="stylesheet" href="../styles/responsive.css">
-
-  <meta charset="UTF-8">
-  <title>Контакти</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Форма зворотного зв'язку для зв'язку з нами">
+    <title>Контакти | WebLab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/responsive.css">
+    <script src="../js/theme.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/contact.js" defer></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="../index.html">Головна</a>
-      <a href="about.html">Про мене</a>
-      <a href="contact.html">Контакти</a>
-    </nav>
-  </header>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo"><a href="../index.html"><span class="logo-icon">&lt;/&gt;</span><span class="logo-text">Web<span class="logo-accent">Lab</span></span></a></div>
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Головна</a></li>
+                    <li><a href="../labs.html" class="nav-link">Лабораторні</a></li>
+                    <li><a href="../catalog.html" class="nav-link">Каталог</a></li>
+                    <li><a href="about.html" class="nav-link">Про курс</a></li>
+                    <li><a href="contact.html" class="nav-link active">Контакти</a></li>
+                    <li><a href="../admin.html" class="nav-link">Admin</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Перемикач теми">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="burger-menu" id="burgerMenu" aria-label="Меню"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-container">
+                <ul class="mobile-nav-list">
+                    <li><a href="../index.html" class="mobile-nav-link">Головна</a></li>
+                    <li><a href="../labs.html" class="mobile-nav-link">Лабораторні</a></li>
+                    <li><a href="../catalog.html" class="mobile-nav-link">Каталог</a></li>
+                    <li><a href="about.html" class="mobile-nav-link">Про курс</a></li>
+                    <li><a href="contact.html" class="mobile-nav-link active">Контакти</a></li>
+                    <li><a href="../admin.html" class="mobile-nav-link">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-  <main>
-    <h1>Контакти</h1>
-    <form action="./submit.html" method="get">
-      <p>
-        <label for="name">Ім’я:</label>
-        <input id="name" name="name" type="text" required minlength="2" maxlength="30">
-      </p>
-      <p>
-        <label for="email">Email:</label>
-        <input id="email" name="email" type="email" required>
-      </p>
-      <p>
-        <label for="phone">Телефон:</label>
-        <input id="phone" name="phone" type="tel">
-      </p>
-      <p>
-        <label for="topic">Тема:</label>
-        <select id="topic" name="topic">
-          <option value="study">Навчання</option>
-          <option value="work">Співпраця</option>
-          <option value="other">Інше</option>
-        </select>
-      </p>
-      <fieldset>
-        <legend>Зручний спосіб зв’язку</legend>
-        <label><input type="radio" name="contactWay" value="email" checked> Email</label>
-        <label><input type="radio" name="contactWay" value="phone"> Телефон</label>
-      </fieldset>
-      <p>
-        <label for="message">Повідомлення:</label><br>
-        <textarea id="message" name="message" rows="5" cols="30"></textarea>
-      </p>
-      <p>
-        <label><input type="checkbox" name="agree" required> Погоджуюсь з правилами</label>
-      </p>
-      <button type="submit">Надіслати</button>
-    </form>
-  </main>
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Контактна <span class="highlight">форма</span></h1>
+                <p>Зв'яжіться з нами — ми завжди раді допомогти</p>
+            </div>
+        </section>
+
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="form-card">
+                    <h2 style="margin-bottom: 1.5rem;">Форма зворотного зв'язку</h2>
+                    
+                    <div id="formSuccess" class="success-message" style="display: none;"></div>
+                    
+                    <form id="contactForm" method="GET" action="#">
+                        <div class="form-group">
+                            <label for="name">Ім'я <span style="color: var(--accent-danger);">*</span></label>
+                            <input type="text" id="name" name="name" required minlength="2" maxlength="50" placeholder="Ваше ім'я">
+                            <div class="error-message" id="nameError"></div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email <span style="color: var(--accent-danger);">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="example@mail.com">
+                                <div class="error-message" id="emailError"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Телефон</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+380 XX XXX XXXX">
+                                <div class="error-message" id="phoneError"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="topic">Тема звернення</label>
+                            <select id="topic" name="topic">
+                                <option value="study">Навчання</option>
+                                <option value="cooperation">Співпраця</option>
+                                <option value="support">Техпідтримка</option>
+                                <option value="other">Інше</option>
+                            </select>
+                        </div>
+                        
+                        <fieldset class="fieldset">
+                            <legend>Зручний спосіб зв'язку</legend>
+                            <div class="radio-group">
+                                <label><input type="radio" name="contactWay" value="email" checked> Email</label>
+                                <label><input type="radio" name="contactWay" value="phone"> Телефон</label>
+                            </div>
+                        </fieldset>
+                        
+                        <div class="form-group">
+                            <label for="message">Повідомлення <span style="color: var(--accent-danger);">*</span></label>
+                            <textarea id="message" name="message" rows="5" required minlength="10" maxlength="500" placeholder="Ваше повідомлення..."></textarea>
+                            <div class="error-message" id="messageError"></div>
+                            <div style="text-align: right; font-size: 0.8rem; color: var(--text-muted);">
+                                <span id="charCount">0</span> / 500 символів
+                            </div>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <label>
+                                <input type="checkbox" id="agreement" name="agreement" required>
+                                Я погоджуюсь з <a href="#" style="color: var(--accent-primary);">правилами обробки персональних даних</a>
+                            </label>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                            <button type="submit" class="btn btn-primary">Надіслати</button>
+                            <button type="reset" class="btn btn-secondary" id="clearDraft">Очистити чернетку</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info"><div class="footer-logo"><span class="logo-icon">&lt;/&gt;</span><span>WebLab</span></div><p>Сучасний підхід до вивчення веб-технологій.</p></div>
+                <div class="footer-links">
+                    <div class="footer-column"><h4>Навігація</h4><ul><li><a href="../index.html">Головна</a></li><li><a href="../labs.html">Лабораторні</a></li><li><a href="../catalog.html">Каталог</a></li></ul></div>
+                    <div class="footer-column"><h4>Інформація</h4><ul><li><a href="about.html">Про курс</a></li><li><a href="contact.html">Контакти</a></li><li><a href="../admin.html">Admin</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> WebLab. Всі права захищено.</p></div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Наверх"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
 </body>
 </html>

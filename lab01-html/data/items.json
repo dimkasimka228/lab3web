@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "title": "HTML5 Майстерність",
+    "category": "html",
+    "description": "Повний курс з HTML5: семантика, доступність, форми, медіа.",
+    "price": 299,
+    "level": "Початковий",
+    "duration": "20 год",
+    "image": "../img/monkeyasd.png",
+    "rating": 4.8
+  },
+  {
+    "id": 2,
+    "title": "CSS3 Професіонал",
+    "category": "css",
+    "description": "Flexbox, Grid, анімації, адаптивний дизайн, препроцесори.",
+    "price": 349,
+    "level": "Початковий",
+    "duration": "25 год",
+    "image": "../img/monkeyasd.png",
+    "rating": 4.9
+  },
+  {
+    "id": 3,
+    "title": "JavaScript Поглиблений",
+    "category": "js",
+    "description": "ES6+, асинхронність, DOM, події, AJAX, проміси.",
+    "price": 399,
+    "level": "Середній",
+    "duration": "30 год",
+    "image": "../img/monkeyasd.png",
+    "rating": 4.7
+  },
+  {
+    "id": 4,
+    "title": "React Developer",
+    "category": "react",
+    "description": "Компоненти, хуки, стан, маршрутизація, Redux.",
+    "price": 499,
+    "level": "Просунутий",
+    "duration": "35 год",
+    "image": "../img/monkeyasd.png",
+    "rating": 4.9
+  },
+  {
+    "id": 5,
+    "title": "Node.js & Express",
+    "category": "backend",
+    "description": "Створення REST API, робота з базами даних, автентифікація.",
+    "price": 449,
+    "level": "Просунутий",
+    "duration": "28 год",
+    "image": "../img/monkeyasd.png",
+    "rating": 4.8
+  },
+  {
+    "id": 6,
+    "title": "Vue.js Basics",
+    "category": "vue",
+    "description": "Основи Vue.js, компоненти, директиви, Vue Router.",
+    "price": 379,
+    "level": "Середній",
+    "duration": "22 год",
+    "image": "../img/monkeyasd.png",
+    "rating": 4.6
+  },
+  {
+    "id": 7,
+    "title": "TypeScript Fundamentals",
+    "category": "ts",
+    "description": "Типізація, інтерфейси, дженерики, інтеграція з React.",
+    "price": 329,
+    "level": "Середній",
+    "duration": "18 год",
+    "image": "../img/monkeyasd.png",
+    "rating": 4.8
+  },
+  {
+    "id": 8,
+    "title": "Tailwind CSS",
+    "category": "css",
+    "description": "Сучасний підхід до стилізації з Tailwind CSS.",
+    "price": 279,
+    "level": "Початковий",
+    "duration": "15 год",
+    "image": "../img/monkeyasd.png",
+    "rating": 4.7
+  }
+]

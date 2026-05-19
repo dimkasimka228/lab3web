@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Каталог курсів з веб-програмування">
+    <title>Каталог курсів | WebLab</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    
+    <script src="js/theme.js" defer></script>
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon">&lt;/&gt;</span>
+                    <span class="logo-text">Web<span class="logo-accent">Lab</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Головна</a></li>
+                    <li><a href="labs.html" class="nav-link">Лабораторні</a></li>
+                    <li><a href="catalog.html" class="nav-link active">Каталог</a></li>
+                    <li><a href="pages/about.html" class="nav-link">Про курс</a></li>
+                    <li><a href="pages/contact.html" class="nav-link">Контакти</a></li>
+                    <li><a href="admin.html" class="nav-link">Admin</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Перемикач теми">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="burger-menu" id="burgerMenu" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-container">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html" class="mobile-nav-link">Головна</a></li>
+                    <li><a href="labs.html" class="mobile-nav-link">Лабораторні</a></li>
+                    <li><a href="catalog.html" class="mobile-nav-link active">Каталог</a></li>
+                    <li><a href="pages/about.html" class="mobile-nav-link">Про курс</a></li>
+                    <li><a href="pages/contact.html" class="mobile-nav-link">Контакти</a></li>
+                    <li><a href="admin.html" class="mobile-nav-link">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Каталог <span class="highlight">курсів</span></h1>
+                <p>Оберіть свій шлях у веб-розробці</p>
+            </div>
+        </section>
+
+        <section class="catalog-section">
+            <div class="container">
+                <!-- Статус підключення до сервера -->
+                <div id="serverStatus" style="margin-bottom: 1rem; padding: 0.75rem; border-radius: 0.5rem; display: none;"></div>
+                
+                <!-- Фільтри -->
+                <div class="labs-filters">
+                    <div class="filter-group">
+                        <label for="searchInput">🔍 Пошук:</label>
+                        <input type="text" id="searchInput" placeholder="Назва курсу..." class="search-input">
+                    </div>
+                    <div class="filter-group">
+                        <label for="categorySelect">📁 Категорія:</label>
+                        <select id="categorySelect" class="filter-select">
+                            <option value="all">Всі категорії</option>
+                            <option value="html">HTML/CSS</option>
+                            <option value="css">CSS</option>
+                            <option value="js">JavaScript</option>
+                            <option value="react">React</option>
+                            <option value="vue">Vue.js</option>
+                            <option value="backend">Backend</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sortSelect">🔄 Сортування:</label>
+                        <select id="sortSelect" class="filter-select">
+                            <option value="default">За замовчуванням</option>
+                            <option value="price-asc">Ціна: низька → висока</option>
+                            <option value="price-desc">Ціна: висока → низька</option>
+                            <option value="rating">За рейтингом</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Сітка курсів -->
+                <div id="catalogGrid" class="labs-grid">
+                    <div class="empty-state">⏳ Завантаження курсів...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo"><span class="logo-icon">&lt;/&gt;</span><span>WebLab</span></div>
+                    <p>Сучасний підхід до вивчення веб-технологій. Практика, проєкти, результат.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Навігація</h4>
+                        <ul>
+                            <li><a href="index.html">Головна</a></li>
+                            <li><a href="labs.html">Лабораторні</a></li>
+                            <li><a href="catalog.html">Каталог</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Інформація</h4>
+                        <ul>
+                            <li><a href="pages/about.html">Про курс</a></li>
+                            <li><a href="pages/contact.html">Контакти</a></li>
+                            <li><a href="admin.html">Admin</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="footerYear"></span> WebLab. Всі права захищено.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Наверх">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <script>
+        // ============================================
+        // API URL (json-server)
+        // ============================================
+        const API_URL = 'http://localhost:3000/courses';
+        
+        let allCourses = [];
+        
+        // ============================================
+        // ОТРИМАННЯ СТИЛІВ ДЛЯ КАТЕГОРІЙ
+        // ============================================
+        function getCategoryClass(category) {
+            const classes = {
+                'html': 'badge-html',
+                'css': 'badge-html',
+                'js': 'badge-js',
+                'react': 'badge-react',
+                'vue': 'badge-react',
+                'backend': 'badge-js'
+            };
+            return classes[category] || 'badge-html';
+        }
+
+        function getCategoryLabel(category) {
+            const labels = {
+                'html': 'HTML/CSS',
+                'css': 'HTML/CSS',
+                'js': 'JavaScript',
+                'react': 'React',
+                'vue': 'Vue.js',
+                'backend': 'Node.js'
+            };
+            return labels[category] || category.toUpperCase();
+        }
+        
+        // ============================================
+        // ПЕРЕВІРКА СЕРВЕРА
+        // ============================================
+        async function checkServer() {
+            const statusDiv = document.getElementById('serverStatus');
+            try {
+                const response = await fetch('http://localhost:3000');
+                if (response.ok) {
+                    statusDiv.style.display = 'none';
+                    return true;
+                }
+            } catch (e) {
+                statusDiv.innerHTML = '⚠️ Сервер не запущено! Запустіть: <code style="background:#1e293b; padding:2px 6px; border-radius:4px;">json-server --watch db.json --port 3000</code>';
+                statusDiv.style.display = 'block';
+                statusDiv.style.background = '#f59e0b';
+                statusDiv.style.color = '#fff';
+                return false;
+            }
+            return false;
+        }
+        
+        // ============================================
+        // ЗАВАНТАЖЕННЯ КУРСІВ З СЕРВЕРА
+        // ============================================
+        async function loadCourses() {
+            const grid = document.getElementById('catalogGrid');
+            
+            try {
+                grid.innerHTML = '<div class="empty-state">⏳ Завантаження курсів з сервера...</div>';
+                
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                
+                allCourses = await response.json();
+                console.log('✅ Завантажено курсів:', allCourses.length);
+                
+                filterAndRender();
+                
+            } catch (error) {
+                console.error('Помилка:', error);
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">❌</div>
+                        <h3>Помилка завантаження даних</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">${error.message}</p>
+                        <button class="btn btn-primary" onclick="location.reload()">Спробувати знову</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // ============================================
+        // РЕНДЕРИНГ КАРТОК КУРСІВ
+        // ============================================
+        function renderCourses(courses) {
+            const grid = document.getElementById('catalogGrid');
+            
+            if (!courses || courses.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">😢</div>
+                        <h3>Курсів не знайдено</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Спробуйте змінити параметри пошуку або фільтрації</p>
+                        <button class="btn btn-primary" id="resetAllFilters">Скинути всі фільтри</button>
+                    </div>
+                `;
+                
+                const resetBtn = document.getElementById('resetAllFilters');
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', () => {
+                        document.getElementById('searchInput').value = '';
+                        document.getElementById('categorySelect').value = 'all';
+                        document.getElementById('sortSelect').value = 'default';
+                        filterAndRender();
+                    });
+                }
+                return;
+            }
+            
+            grid.innerHTML = courses.map(course => `
+                <div class="lab-card" data-id="${course.id}">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <span class="lab-badge ${getCategoryClass(course.category)}">${getCategoryLabel(course.category)}</span>
+                        <div style="display: flex; align-items: center; gap: 4px;">
+                            <span style="color: #fbbf24;">★</span>
+                            <span style="color: var(--text-muted); font-size: 0.875rem;">${course.rating || 4.5}</span>
+                        </div>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">${escapeHtml(course.title)}</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem; line-height: 1.5; margin-bottom: 1rem;">${escapeHtml(course.description)}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <span style="color: var(--accent-primary); font-weight: 700; font-size: 1.5rem;">$${course.price}</span>
+                            <span style="color: var(--text-muted); font-size: 0.75rem;"> / ${course.duration || '20 год'}</span>
+                        </div>
+                        <div style="color: var(--text-muted); font-size: 0.75rem;">
+                            👨‍🎓 ${course.students || 0}
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn btn-primary" style="flex: 1; padding: 0.5rem;" onclick="showCourseDetails(${course.id})">
+                            Детальніше
+                        </button>
+                        <button class="btn btn-secondary" style="padding: 0.5rem 0.75rem;" onclick="addToFavorites(${course.id})">
+                            ❤️
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // ============================================
+        // ЗАХИСТ ВІД XSS
+        // ============================================
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+        
+        // ============================================
+        // ПОКАЗ ДЕТАЛЕЙ КУРСУ
+        // ============================================
+        window.showCourseDetails = function(courseId) {
+            const course = allCourses.find(c => c.id === courseId);
+            if (!course) return;
+            
+            const modal = document.createElement('div');
+            modal.className = 'custom-modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2000;
+                backdrop-filter: blur(4px);
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: var(--bg-card); border-radius: 1.5rem; max-width: 500px; width: 90%; padding: 2rem; position: relative; animation: modalSlideIn 0.3s ease;">
+                    <button onclick="this.closest('.custom-modal').remove()" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-primary);">&times;</button>
+                    <h2 style="margin-bottom: 1rem;">${escapeHtml(course.title)}</h2>
+                    <div style="margin-bottom: 1rem;">
+                        <span class="lab-badge ${getCategoryClass(course.category)}">${getCategoryLabel(course.category)}</span>
+                    </div>
+                    <p style="margin-bottom: 1rem; line-height: 1.6;">${escapeHtml(course.description)}</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div><strong>💰 Ціна:</strong> $${course.price}</div>
+                        <div><strong>⏱ Тривалість:</strong> ${course.duration || '20 год'}</div>
+                        <div><strong>📊 Рівень:</strong> ${course.level || 'Середній'}</div>
+                        <div><strong>⭐ Рейтинг:</strong> ${course.rating || 4.5} / 5</div>
+                        <div><strong>👨‍🎓 Студентів:</strong> ${course.students || 0}</div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="this.closest('.custom-modal').remove()">Закрити</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.remove();
+            });
+        };
+        
+        // ============================================
+        // ДОДАВАННЯ В ОБРАНЕ
+        // ============================================
+        window.addToFavorites = function(courseId) {
+            let favorites = JSON.parse(localStorage.getItem('weblab_favorites') || '[]');
+            
+            if (!favorites.includes(courseId)) {
+                favorites.push(courseId);
+                localStorage.setItem('weblab_favorites', JSON.stringify(favorites));
+                showToast('✅ Курс додано до обраного!', 'success');
+            } else {
+                favorites = favorites.filter(id => id !== courseId);
+                localStorage.setItem('weblab_favorites', JSON.stringify(favorites));
+                showToast('❌ Курс видалено з обраного', 'info');
+            }
+        };
+        
+        // ============================================
+        // ПОКАЗ ПОВІДОМЛЕННЯ
+        // ============================================
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 80px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : '#3b82f6'};
+                color: white;
+                padding: 12px 20px;
+                border-radius: 12px;
+                z-index: 2001;
+                animation: slideInRight 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                font-size: 14px;
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2500);
+        }
+        
+        // ============================================
+        // ФІЛЬТРАЦІЯ ТА СОРТУВАННЯ
+        // ============================================
+        function filterAndRender() {
+            let filtered = [...allCourses];
+            
+            const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+            if (searchTerm) {
+                filtered = filtered.filter(course => 
+                    course.title.toLowerCase().includes(searchTerm) || 
+                    course.description.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            const category = document.getElementById('categorySelect')?.value || 'all';
+            if (category !== 'all') {
+                filtered = filtered.filter(course => course.category === category);
+            }
+            
+            const sortBy = document.getElementById('sortSelect')?.value || 'default';
+            switch (sortBy) {
+                case 'price-asc':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    filtered.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+                    break;
+                default:
+                    filtered.sort((a, b) => a.id - b.id);
+            }
+            
+            renderCourses(filtered);
+        }
+        
+        // ============================================
+        // ІНІЦІАЛІЗАЦІЯ
+        // ============================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            const isServerRunning = await checkServer();
+            
+            if (isServerRunning) {
+                await loadCourses();
+            } else {
+                document.getElementById('catalogGrid').innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">⚠️</div>
+                        <h3>Сервер не запущено</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1rem;">Запустіть команду в терміналі:</p>
+                        <code style="background: var(--bg-secondary); padding: 0.5rem 1rem; border-radius: 0.5rem; display: inline-block; margin-bottom: 1rem;">json-server --watch db.json --port 3000</code>
+                        <br>
+                        <button class="btn btn-primary" onclick="location.reload()">Перевірити ще раз</button>
+                    </div>
+                `;
+            }
+            
+            const searchInput = document.getElementById('searchInput');
+            const categorySelect = document.getElementById('categorySelect');
+            const sortSelect = document.getElementById('sortSelect');
+            
+            if (searchInput) searchInput.addEventListener('input', filterAndRender);
+            if (categorySelect) categorySelect.addEventListener('change', filterAndRender);
+            if (sortSelect) sortSelect.addEventListener('change', filterAndRender);
+        });
+        
+        // Додаємо анімацію
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes modalSlideIn {
+                from { transform: translateY(-30px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

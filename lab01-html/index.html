@@ -1,62 +1,204 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Сучасний курс з веб-програмування: HTML, CSS, JavaScript, React. Опануйте фронтенд-розробку з нуля до професійного рівня.">
+    <title>WebLab | Сучасний курс веб-програмування</title>
     
-<link rel="stylesheet" href="./styles/style.css">
-<link rel="stylesheet" href="./styles/responsive.css">
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Мій перший HTML-сайт з базовою структурою.">
-  <title>Мій перший HTML-сайт</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    
+    <script src="js/theme.js" defer></script>
+    <script src="js/main.js" defer></script>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="index.html">Головна</a>
-      <a href="pages/about.html">Про мене</a>
-      <a href="pages/contact.html">Контакти</a>
-    </nav>
-  </header>
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-icon">&lt;/&gt;</span>
+                    <span class="logo-text">Web<span class="logo-accent">Lab</span></span>
+                </a>
+            </div>
+            
+            <nav class="nav-desktop">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link active">Головна</a></li>
+                    <li><a href="labs.html" class="nav-link">Лабораторні</a></li>
+                    <li><a href="catalog.html" class="nav-link">Каталог</a></li>
+                    <li><a href="pages/about.html" class="nav-link">Про курс</a></li>
+                    <li><a href="pages/contact.html" class="nav-link">Контакти</a></li>
+                    <li><a href="admin.html" class="nav-link">Admin</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Перемикач теми">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="burger-menu" id="burgerMenu" aria-label="Меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-container">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html" class="mobile-nav-link active">Головна</a></li>
+                    <li><a href="labs.html" class="mobile-nav-link">Лабораторні</a></li>
+                    <li><a href="catalog.html" class="mobile-nav-link">Каталог</a></li>
+                    <li><a href="pages/about.html" class="mobile-nav-link">Про курс</a></li>
+                    <li><a href="pages/contact.html" class="mobile-nav-link">Контакти</a></li>
+                    <li><a href="admin.html" class="mobile-nav-link">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-  <main>
-    <h1>Мій перший HTML-сайт</h1>
-    <h2>Вступ</h2>
-    <p>Це <strong>приклад</strong> головної сторінки. Тут я використовую <em>базові теги</em>.</p>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Веб-програмування <span class="hero-accent">Front-end</span></h1>
+                    <p class="hero-subtitle">Опануйте сучасні технології створення веб-сайтів: від основ HTML до професійної розробки на React. Практичні проєкти, реальні задачі та підтримка експертів.</p>
+                    <div class="hero-buttons">
+                        <a href="labs.html" class="btn btn-primary">Почати навчання</a>
+                        <a href="catalog.html" class="btn btn-secondary">Переглянути курси</a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h2>Списки</h2>
-    <ul>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-    </ul>
-    <ol>
-      <li>Підготовка</li>
-      <li>Кодування</li>
-      <li>Тестування</li>
-    </ol>
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Чому обирають <span class="highlight">наш курс?</span></h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>Структурована програма</h3>
+                        <p>10+ модулів від базових концепцій до складних фреймворків з покроковими інструкціями.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3>Практичні проєкти</h3>
+                        <p>3 реальних проєкти для портфоліо: лендинг, адмін-панель та React-додаток.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Сертифікація</h3>
+                        <p>Офіційний сертифікат після завершення курсу, що підтверджує ваші навички.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Підтримка 24/7</h3>
+                        <p>Чат з менторами та спільнотою студентів для вирішення будь-яких питань.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h2>Зображення</h2>
-    <figure>
-      <img src="assets/img/placeholder.png" alt="Приклад зображення" width="200" height="150">
-      <figcaption>Моє перше зображення</figcaption>
-    </figure>
+        <section class="labs-preview">
+            <div class="container">
+                <h2 class="section-title">Програма <span class="highlight">курсу</span></h2>
+                <div class="table-wrapper">
+                    <table class="labs-table">
+                        <caption>Розклад лабораторних робіт</caption>
+                        <thead>
+                            <tr><th>№</th><th>Тема</th><th>Опис</th><th>Тривалість</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>HTML5</td><td>Структура документа, семантичні теги, форми, медіа</td><td>2 год</td></tr>
+                            <tr><td>2</td><td>CSS3</td><td>Flexbox, Grid, анімації, адаптивний дизайн</td><td>3 год</td></tr>
+                            <tr><td>3</td><td>JavaScript</td><td>DOM, події, асинхронність, ES6+</td><td>4 год</td></tr>
+                            <tr><td>4</td><td>React.js</td><td>Компоненти, хуки, стан, маршрутизація</td><td>5 год</td></tr>
+                            <tr><td>5</td><td>Node.js + Express</td><td>Створення REST API, робота з БД</td><td>4 год</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
-    <h2>Таблиця</h2>
-    <table border="1">
-      <caption>Розклад занять</caption>
-      <thead>
-        <tr><th>День</th><th>Предмет</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Понеділок</td><td>HTML</td></tr>
-        <tr><td>Вівторок</td><td>CSS</td></tr>
-      </tbody>
-    </table>
-  </main>
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Часті <span class="highlight">питання</span></h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Чи потрібна попередня підготовка?</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Ні, курс розрахований на повних новачків. Ми починаємо з самих основ HTML та поступово переходимо до складних тем.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header">
+                            <span>Скільки часу займає навчання?</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="accordion-content">
+                            <p>Програма розрахована на 3 місяці при навантаженні 8-10 годин на тиждень.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <p>&copy; 2026 Ім’я Прізвище</p>
-  </footer>
+        <section class="audio-section">
+            <div class="container">
+                <h2 class="section-title">Медіа-<span class="highlight">плеєр</span></h2>
+                <div class="audio-card">
+                    <div class="audio-info">
+                        <div class="audio-icon">🎵</div>
+                        <div>
+                            <h3>Тематичний трек</h3>
+                            <p>Музика для натхнення під час навчання</p>
+                        </div>
+                    </div>
+                    <audio controls class="custom-audio">
+                        <source src="assets/media/monkeyandanceNebo.mp3" type="audio/mpeg">
+                        <source src="assets/media/monkeysadsds.mp3" type="audio/mpeg">
+                        <p>Ваш браузер не підтримує аудіоплеєр. <a href="assets/media/monkeyandanceNebo.mp3">Завантажити аудіо</a></p>
+                    </audio>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo"><span class="logo-icon">&lt;/&gt;</span><span>WebLab</span></div>
+                    <p>Сучасний підхід до вивчення веб-технологій. Практика, проєкти, результат.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column"><h4>Навігація</h4><ul><li><a href="index.html">Головна</a></li><li><a href="labs.html">Лабораторні</a></li><li><a href="catalog.html">Каталог</a></li></ul></div>
+                    <div class="footer-column"><h4>Інформація</h4><ul><li><a href="pages/about.html">Про курс</a></li><li><a href="pages/contact.html">Контакти</a></li><li><a href="admin.html">Admin</a></li></ul></div>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>&copy; <span id="footerYear"></span> WebLab. Всі права захищено.</p></div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Наверх">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
 </body>
 </html>

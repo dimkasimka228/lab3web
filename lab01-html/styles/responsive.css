@@ -1,22 +1,130 @@
+/* ============================================
+   Адаптивний дизайн
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+    
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    .hero-content h1 { font-size: 3rem; }
+}
+
+/* Mobile (до 768px) */
 @media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    gap: 10px;
-  }
+    /* Приховуємо десктопну навігацію */
+    .nav-desktop {
+        display: none;
+    }
+    
+    /* Показуємо бургер */
+    .burger-menu {
+        display: flex;
+    }
+    
+    /* Заголовки */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    .hero-content h1 { font-size: 2.25rem; }
+    
+    /* Hero секція */
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+    
+    /* Сітки */
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Форми */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    /* Таблиця - горизонтальний скрол */
+    .table-wrapper {
+        overflow-x: auto;
+    }
+    
+    .labs-table {
+        min-width: 600px;
+    }
+    
+    /* Фільтри */
+    .labs-filters {
+        flex-direction: column;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    /* Картки лабораторних */
+    .labs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Кнопка вгору */
+    .back-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+}
 
-  h1 {
-    font-size: 28px;
-  }
-
-  .container {
-    width: min(100% - 20px, 1100px);
-  }
-
-  table, video, audio {
-    max-width: 100%;
-  }
-
-  form {
-    padding: 15px;
-  }
+/* Small Mobile (до 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .header-container {
+        padding: 0.75rem 1rem;
+    }
+    
+    .logo-text {
+        display: none;
+    }
+    
+    .form-card {
+        padding: 1.5rem;
+    }
+    
+    .accordion-header {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
 }
